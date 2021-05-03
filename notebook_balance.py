@@ -106,3 +106,20 @@ class BalanceView:
         )
         add_deposit_btn.pack(pady=10)
         return add_deposit_frame
+
+    def add_deposit(self):
+        try:
+            d_amount = float(self.deposit_amount.get())
+            self.warnings_lbl.configure(text="")
+        except:
+            try:
+                d_amount = float(self.deposit_amount.get().replace(',','.'))
+                self.warnings_lbl.configure(text="")
+            except:
+                self.warnings_lbl.configure(text="Only digits in amount")
+        d_desc = self.deposit_desc.get()
+        self.ledger.add_deposit(d_amount, d_desc)
+        self.print_table()
+        self.add_deposit_amount_entry.delete(0, 'end')
+        self.add_deposit_desc_entry.delete(0, 'end')
+
