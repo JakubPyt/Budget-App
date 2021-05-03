@@ -2,9 +2,11 @@ from tkinter import ttk
 
 
 class PlotsView:
-    def __init__(self, notebook):
+    def __init__(self, notebook, ledger):
         # Get main frame to work in it
         self.notebook = notebook
+        # Get instance of class ledger
+        self.ledger = ledger
 
     def display(self):
         # Create self main frame
