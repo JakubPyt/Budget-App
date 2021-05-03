@@ -181,3 +181,20 @@ class BalanceView:
 
         return add_withdraw_frame
 
+    def add_withdraw(self):
+        try:
+            w_amount = float(self.withdraw_amount.get())
+            self.warnings_lbl.configure(text="")
+        except:
+            try:
+                w_amount = float(self.withdraw_amount.get().replace(',','.'))
+                self.warnings_lbl.configure(text="")
+            except:
+                self.warnings_lbl.configure(text="Only digits in amount")
+        w_category = self.withdraw_category.get()
+        w_desc = self.withdraw_desc.get()
+        self.ledger.add_withdraw(w_amount, w_desc, w_category)
+        self.print_table()
+        self.add_withdraw_amount_entry.delete(0, 'end')
+        self.add_withdraw_desc_entry.delete(0, 'end')
+        self.withdraw_category.set(self.options[0])
