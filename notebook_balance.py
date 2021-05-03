@@ -33,6 +33,24 @@ class BalanceView:
         self.warnings_lbl.pack()
 
 
+        # Display table
+        self.print_table()
+
         # Return main frame
         return self.balance_frame
+
+    def print_table(self):
+        try:
+            self.place_for_table_txt.pack_forget()
+        except:
+            pass
+        self.place_for_table_txt = tk.Text(
+            master=self.balance_frame,
+            width=100,
+            height=100,
+            padx=10,
+            pady=10
+        )
+        self.place_for_table_txt.insert(tk.END, str(self.ledger.get_ledger()))
+        self.place_for_table_txt.pack(side=tk.RIGHT, anchor=tk.N, padx=10, pady=10)
 
