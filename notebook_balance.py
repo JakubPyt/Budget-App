@@ -64,9 +64,9 @@ class BalanceView:
             height=250
         )
         add_deposit_section = self.print_add_deposit(nb)
-        add_withdraw_section = self.print_add_withdraw(nb)
+        add_withdrawal_section = self.print_add_withdrawal(nb)
         nb.add(add_deposit_section, text="Add deposit")
-        nb.add(add_withdraw_section, text="Add withdraw")
+        nb.add(add_withdrawal_section, text="Add withdrawal")
         nb.pack(side=tk.LEFT, anchor=tk.N, padx=50, pady=10)
 
     # Functions for adding a deposit
@@ -126,78 +126,78 @@ class BalanceView:
         self.add_deposit_amount_entry.delete(0, 'end')
         self.add_deposit_desc_entry.delete(0, 'end')
 
-    # Functions for adding a withdraw
-    def print_add_withdraw(self, notebook):
+    # Functions for adding a withdrawal
+    def print_add_withdrawal(self, notebook):
         # Frame
-        add_withdraw_frame = ttk.Frame(notebook)
-        add_withdraw_frame.pack(fill='both', expand=True)
+        add_withdrawal_frame = ttk.Frame(notebook)
+        add_withdrawal_frame.pack(fill='both', expand=True)
 
         # Amount
-        add_withdraw_amount_lbl = ttk.Label(
-            master=add_withdraw_frame,
+        add_withdrawal_amount_lbl = ttk.Label(
+            master=add_withdrawal_frame,
             text="Amount:"
         )
-        add_withdraw_amount_lbl.pack(pady=10)
-        self.withdraw_amount = tk.StringVar()
-        self.add_withdraw_amount_entry = ttk.Entry(
-            master=add_withdraw_frame,
-            textvariable=self.withdraw_amount
+        add_withdrawal_amount_lbl.pack(pady=10)
+        self.withdrawal_amount = tk.StringVar()
+        self.add_withdrawal_amount_entry = ttk.Entry(
+            master=add_withdrawal_frame,
+            textvariable=self.withdrawal_amount
         )
-        self.add_withdraw_amount_entry.pack()
+        self.add_withdrawal_amount_entry.pack()
 
         # Category
-        add_withdraw_category_lbl = ttk.Label(
-            master=add_withdraw_frame,
+        add_withdrawal_category_lbl = ttk.Label(
+            master=add_withdrawal_frame,
             text="Category:"
         )
-        add_withdraw_category_lbl.pack(pady=10)
+        add_withdrawal_category_lbl.pack(pady=10)
         self.options = ['Unsigned', 'Car', 'Food', 'Child', 'Taxes', 'Unsigned']
-        self.withdraw_category = tk.StringVar()
-        add_withdraw_category_om = ttk.OptionMenu(
-            add_withdraw_frame,
-            self.withdraw_category,
+        self.withdrawal_category = tk.StringVar()
+        add_withdrawal_category_om = ttk.OptionMenu(
+            add_withdrawal_frame,
+            self.withdrawal_category,
             *self.options
         )
-        add_withdraw_category_om.pack()
+        add_withdrawal_category_om.pack()
         # Description
-        add_withdraw_desc_lbl = ttk.Label(
-            master=add_withdraw_frame,
+        add_withdrawal_desc_lbl = ttk.Label(
+            master=add_withdrawal_frame,
             text='Description:'
         )
-        add_withdraw_desc_lbl.pack(pady=10)
-        self.withdraw_desc = tk.StringVar()
-        self.add_withdraw_desc_entry = ttk.Entry(
-            master=add_withdraw_frame,
-            textvariable=self.withdraw_desc
+        add_withdrawal_desc_lbl.pack(pady=10)
+        self.withdrawal_desc = tk.StringVar()
+        self.add_withdrawal_desc_entry = ttk.Entry(
+            master=add_withdrawal_frame,
+            textvariable=self.withdrawal_desc
         )
-        self.add_withdraw_desc_entry.pack()
+        self.add_withdrawal_desc_entry.pack()
 
         # Submit
-        add_withdraw_btn = ttk.Button(
-            master=add_withdraw_frame,
+        add_withdrawal_btn = ttk.Button(
+            master=add_withdrawal_frame,
             text="Add...",
-            command=self.add_withdraw
+            command=self.add_withdrawal
         )
-        add_withdraw_btn.pack(pady=10)
+        add_withdrawal_btn.pack(pady=10)
 
-        return add_withdraw_frame
+        return add_withdrawal_frame
 
-    def add_withdraw(self):
+    def add_withdrawal(self):
         try:
-            w_amount = float(self.withdraw_amount.get())
+            w_amount = float(self.withdrawal_amount.get())
             self.warnings_lbl.configure(text="")
         except:
             try:
-                w_amount = float(self.withdraw_amount.get().replace(',','.'))
+                w_amount = float(self.withdrawal_amount.get().replace(',','.'))
                 self.warnings_lbl.configure(text="")
             except:
                 self.warnings_lbl.configure(text="Only digits in amount")
-        w_category = self.withdraw_category.get()
-        w_desc = self.withdraw_desc.get()
-        w_result = self.ledger.add_withdraw(w_amount, w_desc, w_category)
+        w_category = self.withdrawal_category.get()
+        w_desc = self.withdrawal_desc.get()
+        w_result = self.ledger.add_withdrawal(w_amount, w_desc, w_category)
         if w_result == False:
             self.warnings_lbl.configure(text="You don't have enough funds in your account")
         self.print_table()
-        self.add_withdraw_amount_entry.delete(0, 'end')
-        self.add_withdraw_desc_entry.delete(0, 'end')
-        self.withdraw_category.set(self.options[0])
+        self.add_withdrawal_amount_entry.delete(0, 'end')
+        self.add_withdrawal_desc_entry.delete(0, 'end')
+        self.withdrawal_category.set(self.options[0])

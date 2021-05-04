@@ -50,7 +50,7 @@ class PlotsView:
         elif (len(self.ledger.ledger) == 1):
             empty_ledger_lbl = ttk.Label(
                 master=self.content_frame,
-                text="Not enough data in ledger to draw plots, add more deposits and withdraws"
+                text="Not enough data in ledger to draw plots, add more deposits and withdrawals"
             )
             empty_ledger_lbl.pack()
         else:

@@ -15,8 +15,8 @@ class Ledger:
             'Category': 'Deposit',
         }, ignore_index=True)
 
-    # Func check funds on account and if funds >= withdraw amount, it adds this withdraw
-    def add_withdraw(self, amount, description, category):
+    # Func check funds on account and if funds >= withdrawal amount, it adds this withdrawal
+    def add_withdrawal(self, amount, description, category):
         if self.ledger['Amount'].sum() >= amount:
             self.ledger = self.ledger.append({
                 'Amount': round(-amount, 2),
@@ -32,7 +32,7 @@ class Ledger:
     def get_ledger(self, one_column=''):
         if one_column == '':
             if len(self.ledger) == 0:
-                return "The ledger is empty, add first deposits and withdraws"
+                return "The ledger is empty, add first deposits and withdrawals"
             else:
                 return self.ledger
         elif one_column == 'index':
