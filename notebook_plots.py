@@ -58,7 +58,7 @@ class PlotsView:
             self.print_expenses_by_category_plot()
 
     def print_balance_plot(self):
-        fig = Figure(figsize=(7, 4), dpi=100, facecolor='xkcd:dark grey',)
+        fig = Figure(figsize=(7, 4), dpi=100, facecolor='xkcd:charcoal grey',)
         fig.set_tight_layout('tight')
         fig.add_subplot(
             facecolor='grey',
@@ -67,17 +67,17 @@ class PlotsView:
             self.ledger.get_ledger('Balance'),
             color='g',
         )
-        fig.suptitle('Balance')
+        fig.suptitle('Balance', color='white', font="Consolas", fontsize=18)
 
-        fig.supxlabel('Operation index')
-        fig.supylabel('Balance')
+        fig.supxlabel('No. operation', fontsize=10)
+        fig.supylabel('Balance', fontsize=10)
 
         canvas = FigureCanvasTkAgg(fig, master=self.content_frame)
         canvas.draw()
         canvas.get_tk_widget().pack(side=tk.LEFT, anchor=tk.N)
 
     def print_expenses_by_category_plot(self):
-        fig = Figure(figsize=(4,4), dpi=100, facecolor='xkcd:dark grey',)
+        fig = Figure(figsize=(4,4), dpi=100, facecolor='xkcd:charcoal grey',)
         fig.set_tight_layout('tight')
         fig.add_subplot(
             facecolor='grey',
@@ -87,7 +87,7 @@ class PlotsView:
             shadow=True,
             autopct='%1.1f%%',
         )
-        fig.suptitle('Expenes by category')
+        fig.suptitle('Expenes by category', color='white', font="Consolas", fontsize=18)
         canvas = FigureCanvasTkAgg(fig, master=self.content_frame)
         canvas.draw()
         canvas.get_tk_widget().pack(side=tk.LEFT, anchor=tk.N)
