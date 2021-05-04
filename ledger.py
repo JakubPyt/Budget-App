@@ -40,3 +40,7 @@ class Ledger:
         else:
             return self.ledger[one_column]
 
+    def get_expenses_by_category(self):
+        category_amount_df = self.ledger[['Category', 'Amount']].where(self.ledger['Category'] != 'Deposit')
+        expenses_by_category = category_amount_df.groupby('Category').sum().abs()
+        return expenses_by_category
