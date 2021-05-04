@@ -51,7 +51,8 @@ class BalanceView:
             width=100,
             height=100,
             padx=10,
-            pady=10
+            pady=10,
+            bg='light grey'
         )
         self.place_for_table_txt.insert(tk.END, str(self.ledger.get_ledger()))
         self.place_for_table_txt.config(state='disabled', xscrollcommand=True)
