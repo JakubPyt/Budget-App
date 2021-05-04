@@ -41,3 +41,22 @@ class PlotsView:
         # Return main frame
         return self.plots_frame
 
+    def print_balance_plot(self):
+        fig = Figure(figsize=(7, 4), dpi=100, facecolor='xkcd:dark grey',)
+        fig.set_tight_layout('tight')
+        fig.add_subplot(
+            facecolor='grey',
+        ).plot(
+            self.ledger.get_ledger('index'),
+            self.ledger.get_ledger('Balance'),
+            color='g',
+        )
+        fig.suptitle('Balance')
+
+        fig.supxlabel('Operation index')
+        fig.supylabel('Balance')
+
+        canvas = FigureCanvasTkAgg(fig, master=self.plots_frame)
+        canvas.draw()
+        canvas.get_tk_widget().pack(side=tk.LEFT, anchor=tk.N)
+
