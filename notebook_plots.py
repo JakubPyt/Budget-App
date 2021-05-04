@@ -60,3 +60,18 @@ class PlotsView:
         canvas.draw()
         canvas.get_tk_widget().pack(side=tk.LEFT, anchor=tk.N)
 
+    def print_expenses_by_category_plot(self):
+        fig = Figure(figsize=(4,4), dpi=100, facecolor='xkcd:dark grey',)
+        fig.set_tight_layout('tight')
+        fig.add_subplot(
+            facecolor='grey',
+        ).pie(
+            self.ledger.get_expenses_by_category()['Amount'],
+            labels=self.ledger.get_expenses_by_category().index,
+            shadow=True,
+            autopct='%1.1f%%',
+        )
+        fig.suptitle('Expenes by category')
+        canvas = FigureCanvasTkAgg(fig, master=self.plots_frame)
+        canvas.draw()
+        canvas.get_tk_widget().pack(side=tk.LEFT, anchor=tk.N)
