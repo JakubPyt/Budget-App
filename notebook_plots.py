@@ -47,6 +47,12 @@ class PlotsView:
                 text=self.ledger.get_ledger()
             )
             empty_ledger_lbl.pack()
+        elif (len(self.ledger.ledger) == 1):
+            empty_ledger_lbl = ttk.Label(
+                master=self.content_frame,
+                text="Not enough data in ledger to draw plots, add more deposits and withdraws"
+            )
+            empty_ledger_lbl.pack()
         else:
             self.print_balance_plot()
             self.print_expenses_by_category_plot()
