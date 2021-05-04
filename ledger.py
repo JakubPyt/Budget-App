@@ -26,7 +26,7 @@ class Ledger:
             }, ignore_index=True)
             return True
         else:
-            return "You don't have enough funds in your account"
+            return False
 
     # Func return ledger or string(if ledger is empty)
     def get_ledger(self, one_column=''):

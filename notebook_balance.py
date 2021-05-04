@@ -194,7 +194,9 @@ class BalanceView:
                 self.warnings_lbl.configure(text="Only digits in amount")
         w_category = self.withdraw_category.get()
         w_desc = self.withdraw_desc.get()
-        self.ledger.add_withdraw(w_amount, w_desc, w_category)
+        w_result = self.ledger.add_withdraw(w_amount, w_desc, w_category)
+        if w_result == False:
+            self.warnings_lbl.configure(text="You don't have enough funds in your account")
         self.print_table()
         self.add_withdraw_amount_entry.delete(0, 'end')
         self.add_withdraw_desc_entry.delete(0, 'end')
