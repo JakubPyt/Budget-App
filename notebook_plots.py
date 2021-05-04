@@ -27,19 +27,29 @@ class PlotsView:
         )
         header_lbl.pack(pady=20)
 
+        self.refresh()
+        # Return main frame
+        return self.plots_frame
+
+    def refresh(self):
+        try:
+            self.content_frame.pack_forget()
+        except:
+            pass
+        self.content_frame = ttk.Frame(
+            master=self.plots_frame
+        )
+        self.content_frame.pack()
         # Check if ledger is empty
         if(len(self.ledger.ledger) == 0):
             empty_ledger_lbl = ttk.Label(
-                master=self.plots_frame,
+                master=self.content_frame,
                 text=self.ledger.get_ledger()
             )
             empty_ledger_lbl.pack()
         else:
             self.print_balance_plot()
             self.print_expenses_by_category_plot()
-
-        # Return main frame
-        return self.plots_frame
 
     def print_balance_plot(self):
         fig = Figure(figsize=(7, 4), dpi=100, facecolor='xkcd:dark grey',)
@@ -56,7 +66,7 @@ class PlotsView:
         fig.supxlabel('Operation index')
         fig.supylabel('Balance')
 
-        canvas = FigureCanvasTkAgg(fig, master=self.plots_frame)
+        canvas = FigureCanvasTkAgg(fig, master=self.content_frame)
         canvas.draw()
         canvas.get_tk_widget().pack(side=tk.LEFT, anchor=tk.N)
 
@@ -72,6 +82,6 @@ class PlotsView:
             autopct='%1.1f%%',
         )
         fig.suptitle('Expenes by category')
-        canvas = FigureCanvasTkAgg(fig, master=self.plots_frame)
+        canvas = FigureCanvasTkAgg(fig, master=self.content_frame)
         canvas.draw()
         canvas.get_tk_widget().pack(side=tk.LEFT, anchor=tk.N)

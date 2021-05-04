@@ -17,11 +17,16 @@ class NotebookView:
 
         # Create an instance of the class that get the mainframe to work in it
         bv = BalanceView(notebook, ledger)
-        pv = PlotsView(notebook, ledger)
+        self.pv = PlotsView(notebook, ledger)
 
         # Pages of notebook display main frames from above classes
         notebook.add(bv.display(), text="Balance")
-        notebook.add(pv.display(), text="Plots")
-
+        notebook.add(self.pv.display(), text="Plots")
+        notebook.bind("<<NotebookTabChanged>>", self.reload)
         # Display notebook
         notebook.pack()
+
+    def reload(self, event):
+        tab = event.widget.tab('current')['text']
+        if tab == 'Plots':
+            self.pv.refresh()
