@@ -7,7 +7,7 @@ from notebook import NotebookView
 class App:
     def __init__(self):
         # Create window
-        self.window = ThemedTk(theme='equilux')
+        self.window = ThemedTk(theme='black')
         self.window.title('Budget App')
         self.window.geometry("1000x500")
 
