@@ -29,17 +29,15 @@ class App:
         header_lbl.pack(pady=20)
         subtitle_lbl = ttk.Label(
             master=self.frame,
-            font=('Arial', 10, 'italic'),
             text="Your place to manage your finances!",
         )
         subtitle_lbl.pack(pady=10)
-        you_can = ('You can:\n'
+        you_can = ('You can here:\n'
                    + '-Add deposits and withdrawals\n'
                    + '-Create a balance chart\n'
                    + '-Create a expenses by category chart\n')
         instructions_lbl = ttk.Label(
             master=self.frame,
-            font=('Arial', 10),
             text=you_can,
             justify=tk.CENTER,
             padding=5
@@ -48,6 +46,7 @@ class App:
         go_btn = ttk.Button(
             master=self.frame,
             text="Let's go!",
+            padding=10,
             command=self.cover_welcome
         )
         go_btn.pack()
