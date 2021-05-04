@@ -54,7 +54,7 @@ class BalanceView:
             pady=10
         )
         self.place_for_table_txt.insert(tk.END, str(self.ledger.get_ledger()))
-        self.place_for_table_txt.config(state='disabled')
+        self.place_for_table_txt.config(state='disabled', xscrollcommand=True)
         self.place_for_table_txt.pack(side=tk.RIGHT, anchor=tk.N, padx=10, pady=10)
 
     def print_add_nb(self):
