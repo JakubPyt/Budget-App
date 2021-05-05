@@ -106,7 +106,6 @@ class BalanceView:
         # Location of notebook
         nb.pack(side=tk.LEFT, anchor=tk.N, padx=50, pady=10)
 
-
     def print_add_deposit(self, notebook):
         """
         Method build section to add deposits to ledger.
@@ -187,8 +186,9 @@ class BalanceView:
                 # Clearing warnings label
                 self.warnings_lbl.configure(text="")
             except:
-                # If methods above not working, print info for user
-                self.warnings_lbl.configure(text="Only digits in amount")
+                if self.deposit_amount.get() != '':
+                    # If methods above not working, print info for user
+                    self.warnings_lbl.configure(text="Only digits in amount")
 
         # Get describe from self.deposit_desc from print_add_deposit
         d_desc = self.deposit_desc.get()
@@ -203,7 +203,6 @@ class BalanceView:
         self.add_deposit_amount_entry.delete(0, 'end')
         self.add_deposit_desc_entry.delete(0, 'end')
 
-    # Functions for adding a withdrawal
     def print_add_withdrawal(self, notebook):
         """
         Method build section to add withdrawals to ledger.
@@ -307,8 +306,9 @@ class BalanceView:
                 # Clearing warnings label
                 self.warnings_lbl.configure(text="")
             except:
-                # If methods above not working, print info for user
-                self.warnings_lbl.configure(text="Only digits in amount")
+                if self.withdrawal_amount.get() != '':
+                    # If methods above not working, print info for user
+                    self.warnings_lbl.configure(text="Only digits in amount")
 
         # Get describe and category from them vars in print_add_deposit
         w_category = self.withdrawal_category.get()
