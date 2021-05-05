@@ -145,15 +145,26 @@ class PlotsView:
         # Set paddings inside figure
         fig.set_tight_layout('tight')
 
-        # Create plot
-        fig.add_subplot(
-            facecolor='grey',
-        ).pie(
-            self.ledger_instance.get_expenses_by_category()['Amount'],  # Sum by category
-            labels=self.ledger_instance.get_expenses_by_category().index,  # Names of categories
-            shadow=True,  # Shadow under the pies
-            autopct='%1.1f%%',  # Format of values on pies
-        )
+        # Checking if we have any withdrawals to display
+        if len(self.ledger_instance.get_expenses_by_category()) == 0:
+            # If there isn't withdrawals to plot, display warning
+            info_lbl = ttk.Label(
+                master=self.content_frame,
+                text="No withdrawals to display",
+                foreground='red'
+            )
+            info_lbl.pack()
+        else:
+            # If there is more than 0 withdrawals, print plot
+            # Create plot
+            fig.add_subplot(
+                facecolor='grey',
+            ).pie(
+                self.ledger_instance.get_expenses_by_category()['Amount'],  # Sum by category
+                labels=self.ledger_instance.get_expenses_by_category().index,  # Names of categories
+                shadow=True,  # Shadow under the pies
+                autopct='%1.1f%%',  # Format of values on pies
+            )
 
         # Style of header of plot
         fig.suptitle(
