@@ -8,7 +8,7 @@ In this app you can:
 
 - Create a expenses by category charts
 
-To run this application on your computer you should have virtual environment with:
+To run this application on your computer you should have Python virtual environment with:
 
 <pre><code>pip install git+https://github.com/RedFantom/ttkthemes</code></pre>
 
