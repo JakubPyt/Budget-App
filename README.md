@@ -10,11 +10,11 @@ In this app you can:
 
 To run this application on your computer you should have virtual environment with:
 
-    pip install git+https://github.com/RedFantom/ttkthemes
-    
-    pip install pandas
-    
-    pip install matplotlib
+<pre><code>pip install git+https://github.com/RedFantom/ttkthemes</code></pre>
+
+<pre><code>pip install pandas</code></pre>
+ 
+<pre><code>pip install matplotlib</code></pre>
     
 Or you can just click on this link and run app online:
 https://replit.com/@JakubPyt/Budget-App#main.py 
