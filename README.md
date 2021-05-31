@@ -16,6 +16,6 @@ To run this application on your computer you should have virtual environment wit
  
 <pre><code>pip install matplotlib</code></pre>
     
-Or you can just click on this link and run app online:
-https://replit.com/@JakubPyt/Budget-App#main.py 
+Or you can just click on this link and run app online(by green circle):<br>
+https://replit.com/@JakubPyt/Budget-App#main.py <br>
 (it takes some time to launch the application on the website)
